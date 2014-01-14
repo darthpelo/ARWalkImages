@@ -5,44 +5,52 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--View Controller - Root View Controller-->
+        <!--View Controller - Walk photo story-->
         <scene sceneID="xC0-Fx-NtQ">
             <objects>
                 <tableViewController id="x2g-g4-dSr" customClass="ARWViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="174" sectionHeaderHeight="22" sectionFooterHeight="22" id="7A9-AR-2cp">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="270" sectionHeaderHeight="22" sectionFooterHeight="22" id="7A9-AR-2cp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="174" id="HwR-nq-sVD" customClass="ARWCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="174"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="270" id="HwR-nq-sVD" customClass="ARWCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="270"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HwR-nq-sVD" id="jcP-Xr-qIG">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="174"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="270"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O8F-po-r9n">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="174"/>
+                                            <rect key="frame" x="0.0" y="-33" width="320" height="224"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         </imageView>
-                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="P3J-Yc-QeY">
-                                            <rect key="frame" x="142" y="68" width="37" height="37"/>
+                                        <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="P3J-Yc-QeY">
+                                            <rect key="frame" x="150" y="75" width="20" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </activityIndicatorView>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VGy-uS-6Qy">
-                                            <rect key="frame" x="0.0" y="173" width="320" height="1"/>
+                                            <rect key="frame" x="0.0" y="268" width="320" height="1"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         </view>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K3O-Wi-GEz">
-                                            <rect key="frame" x="0.0" y="174" width="320" height="1"/>
+                                            <rect key="frame" x="0.0" y="269" width="320" height="1"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Teg-NE-XqY">
+                                            <rect key="frame" x="20" y="199" width="280" height="51"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="Helvetica-Light" family="Helvetica" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="activityIndicator" destination="P3J-Yc-QeY" id="G5R-x0-Ghu"/>
+                                    <outlet property="locationInformationLabel" destination="Teg-NE-XqY" id="Uew-pH-xqe"/>
                                     <outlet property="picImageView" destination="O8F-po-r9n" id="xCs-Of-fHb"/>
                                 </connections>
                             </tableViewCell>
@@ -52,7 +60,7 @@
                             <outlet property="delegate" destination="x2g-g4-dSr" id="HRX-E5-8SA"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="1Ti-eN-PPE"/>
+                    <navigationItem key="navigationItem" title="Walk photo story" id="1Ti-eN-PPE"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6In-ug-Zc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

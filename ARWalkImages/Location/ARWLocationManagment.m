@@ -60,7 +60,7 @@
 - (NSDictionary *)calculateBoundingCoordinates:(CLLocationCoordinate2D)coordinate
 {
     double earthRadius = 6371; // earth radius in km
-    double radius = 1; // square bounding box that is a given distance (e.g. 50km) away from the coordinate
+    double radius = 2; // square bounding box that is a given distance (e.g. 50km) away from the coordinate
     
     double x1 = coordinate.longitude - radiandsToDegrees(radius/earthRadius/cos(degreesToRadians(coordinate.latitude)));
     
@@ -84,17 +84,19 @@
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
-    NSDictionary *bound = [self calculateBoundingCoordinates:newLocation.coordinate];
-    [[ARWConnectionManagment sharedManager] getPhotoForLocation:((CLLocation *)bound[@"max"]).coordinate minCoordinate:((CLLocation *)bound[@"min"]).coordinate success:^(UIImage *image) {
-        ARWPhoto *newPhoto = [[ARWPhoto alloc] init];
-        newPhoto.photo = image;
-        newPhoto.photoLocation = newLocation;
-        if ([self.delegate respondsToSelector:@selector(addNewPhoto:)]) {
-            [self.delegate addNewPhoto:newPhoto];
-        }
-    } failure:^{
-        NSLog(@"Error with query");
-    }];
+    if (oldLocation.coordinate.longitude != 0.0f && oldLocation.coordinate.latitude != 0.0f) {
+        NSDictionary *bound = [self calculateBoundingCoordinates:newLocation.coordinate];
+        [[ARWConnectionManagment sharedManager] getPhotoForLocation:((CLLocation *)bound[@"max"]).coordinate minCoordinate:((CLLocation *)bound[@"min"]).coordinate success:^(UIImage *image) {
+            ARWPhoto *newPhoto = [[ARWPhoto alloc] init];
+            newPhoto.photo = image;
+            newPhoto.photoLocation = newLocation;
+            if ([self.delegate respondsToSelector:@selector(addNewPhoto:)]) {
+                [self.delegate addNewPhoto:newPhoto];
+            }
+        } failure:^{
+            NSLog(@"Error with query");
+        }];
+    }
 }
 
 @end

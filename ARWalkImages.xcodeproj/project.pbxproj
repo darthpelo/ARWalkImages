@@ -652,6 +652,7 @@
 				BE3F98411882FD0500E70CD8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BE3F98421882FD0500E70CD8 /* Build configuration list for PBXNativeTarget "ARWalkImagesTests" */ = {
 			isa = XCConfigurationList;
@@ -660,6 +661,7 @@
 				BE3F98441882FD0500E70CD8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

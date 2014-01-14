@@ -26,14 +26,15 @@
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     //www.panoramio.com/map/get_panoramas.php?order=popularity&set=full&from=80&to=100&minx=-7.47&miny=42.29&maxx=-7.42&maxy=42.32&size=medium
-    NSString *urlStr = [NSString stringWithFormat:@"http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=full&from=1&to=40&minx=%f&miny=%f&maxx=%f&maxy=%f&size=medium", maxCoordinate.longitude, maxCoordinate.latitude, minCoordinate.longitude, minCoordinate.latitude];
+    NSString *urlStr = [NSString stringWithFormat:@"http://www.panoramio.com/map/get_panoramas.php?set=full&from=0&to=2&minx=%f&miny=%f&maxx=%f&maxy=%f&size=medium&mapfilter=true", minCoordinate.longitude, minCoordinate.latitude, maxCoordinate.longitude, maxCoordinate.latitude];
     
     [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+#ifdef DEBUG
         NSLog(@"%@ - %@", urlStr, responseObject);
+#endif
         NSArray *photos = responseObject[@"photos"];
         if(photos.count == 0) {
             failure();
-            NSLog(@"No photos");
         } else {
             NSDictionary *photo = [photos objectAtIndex:0];
             
@@ -41,7 +42,7 @@
             
             NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:photo[@"photo_file_url"]]
                                                                    cachePolicy:NSURLRequestUseProtocolCachePolicy
-                                                               timeoutInterval:5.0];
+                                                               timeoutInterval:10.0];
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 [tmp setImageWithURLRequest:request placeholderImage:nil success:^(NSURLRequest *request, NSHTTPURLResponse *response, UIImage *image) {
