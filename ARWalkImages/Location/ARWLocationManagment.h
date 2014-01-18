@@ -14,7 +14,7 @@
 @protocol ARWLocationManagmentDelegate <NSObject>
 @required
 - (void)addNewPhoto:(ARWPhoto *)photoObj;
-
+- (void)addUserLocation:(CLLocation *)userLocation;
 @end
 
 @interface ARWLocationManagment : NSObject <CLLocationManagerDelegate>

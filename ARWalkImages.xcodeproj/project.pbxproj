@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE0B6F2D188A9CC300B7998F /* ARWMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE0B6F2C188A9CC300B7998F /* ARWMapViewController.m */; };
 		BE3F98111882FD0500E70CD8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE3F98101882FD0500E70CD8 /* Foundation.framework */; };
 		BE3F98131882FD0500E70CD8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE3F98121882FD0500E70CD8 /* CoreGraphics.framework */; };
 		BE3F98151882FD0500E70CD8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE3F98141882FD0500E70CD8 /* UIKit.framework */; };
@@ -55,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BE0B6F2B188A9CC300B7998F /* ARWMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ARWMapViewController.h; path = Controller/ARWMapViewController.h; sourceTree = "<group>"; };
+		BE0B6F2C188A9CC300B7998F /* ARWMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ARWMapViewController.m; path = Controller/ARWMapViewController.m; sourceTree = "<group>"; };
 		BE3F980D1882FD0500E70CD8 /* ARWalkImages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ARWalkImages.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE3F98101882FD0500E70CD8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BE3F98121882FD0500E70CD8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -144,6 +147,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE0B6F2A188A9C9B00B7998F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BE0B6F2B188A9CC300B7998F /* ARWMapViewController.h */,
+				BE0B6F2C188A9CC300B7998F /* ARWMapViewController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 		BE3F98041882FD0500E70CD8 = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +190,7 @@
 		BE3F98161882FD0500E70CD8 /* ARWalkImages */ = {
 			isa = PBXGroup;
 			children = (
+				BE0B6F2A188A9C9B00B7998F /* Controller */,
 				BE3F985418834C2700E70CD8 /* Library */,
 				BE3F98501883485A00E70CD8 /* Location */,
 				BE3F984A1883460400E70CD8 /* Model */,
@@ -429,6 +442,7 @@
 				BE3F984918833D4F00E70CD8 /* ARWCell.m in Sources */,
 				BE3F987E18834C4700E70CD8 /* AFURLConnectionOperation.m in Sources */,
 				BE3F988B18834C9500E70CD8 /* ARWConnectionManagment.m in Sources */,
+				BE0B6F2D188A9CC300B7998F /* ARWMapViewController.m in Sources */,
 				BE3F988718834C4700E70CD8 /* UIProgressView+AFNetworking.m in Sources */,
 				BE3F987B18834C4700E70CD8 /* AFHTTPSessionManager.m in Sources */,
 				BE3F987F18834C4700E70CD8 /* AFURLRequestSerialization.m in Sources */,

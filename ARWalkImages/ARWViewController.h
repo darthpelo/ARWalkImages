@@ -11,4 +11,6 @@
 
 @interface ARWViewController : UITableViewController <ARWLocationManagmentDelegate>
 
+- (IBAction)pushMapViewController:(id)sender;
+
 @end

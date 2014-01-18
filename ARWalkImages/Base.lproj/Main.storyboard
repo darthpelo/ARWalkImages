@@ -60,11 +60,49 @@
                             <outlet property="delegate" destination="x2g-g4-dSr" id="HRX-E5-8SA"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Walk photo story" id="1Ti-eN-PPE"/>
+                    <navigationItem key="navigationItem" title="Walk photo story" id="1Ti-eN-PPE">
+                        <barButtonItem key="rightBarButtonItem" title="Map" id="w1n-uk-sto">
+                            <connections>
+                                <action selector="pushMapViewController:" destination="x2g-g4-dSr" id="4As-fQ-ejz"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6In-ug-Zc2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="749" y="135"/>
+        </scene>
+        <!--Map View Controller - MapViewController-->
+        <scene sceneID="e6b-pa-ouH">
+            <objects>
+                <viewController storyboardIdentifier="MapViewController" title="MapViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PjA-RY-aoC" customClass="ARWMapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PL8-0y-TG1"/>
+                        <viewControllerLayoutGuide type="bottom" id="bVX-sV-XF7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="a8J-Pn-Cde">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4nG-A5-tFC">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="PjA-RY-aoC" id="azr-qD-ZX2"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Map" id="fxl-LA-NCY"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="mapView" destination="4nG-A5-tFC" id="AXS-Hb-Fse"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CCE-ly-i8C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1228" y="135"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hhT-Bk-F1P">

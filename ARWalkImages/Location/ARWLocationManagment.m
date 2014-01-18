@@ -60,7 +60,7 @@
 - (NSDictionary *)calculateBoundingCoordinates:(CLLocationCoordinate2D)coordinate
 {
     double earthRadius = 6371; // earth radius in km
-    double radius = 2; // square bounding box that is a given distance (e.g. 50km) away from the coordinate
+    double radius = 1; // square bounding box that is a given distance (e.g. 50km) away from the coordinate
     
     double x1 = coordinate.longitude - radiandsToDegrees(radius/earthRadius/cos(degreesToRadians(coordinate.latitude)));
     
@@ -70,8 +70,8 @@
     
     double y2 = coordinate.latitude - radiandsToDegrees(radius/earthRadius);
     
-    CLLocation *boundLocationMin = [[CLLocation alloc] initWithLatitude:y1 longitude:x1];
-    CLLocation *boundLocationMax = [[CLLocation alloc] initWithLatitude:y2 longitude:x2];
+    CLLocation *boundLocationMax = [[CLLocation alloc] initWithLatitude:y1 longitude:x1];
+    CLLocation *boundLocationMin = [[CLLocation alloc] initWithLatitude:y2 longitude:x2];
     
     return @{
              @"min": boundLocationMin,
@@ -94,7 +94,10 @@
                 [self.delegate addNewPhoto:newPhoto];
             }
         } failure:^{
-            NSLog(@"Error with query");
+            NSLog(@"Query error");
+            if ([self.delegate respondsToSelector:@selector(addUserLocation:)]) {
+                [self.delegate addUserLocation:newLocation];
+            }
         }];
     }
 }

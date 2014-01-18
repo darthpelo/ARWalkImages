@@ -10,6 +10,7 @@
 #import "ARWLocationManagment.h"
 #import "ARWCell.h"
 #import "ARWPhoto.h"
+#import "ARWMapViewController.h"
 
 @interface ARWViewController () {
     NSMutableArray *photosList;
@@ -63,6 +64,14 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)pushMapViewController:(id)sender
+{
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ARWMapViewController *mapViewController = [storyboard instantiateViewControllerWithIdentifier:@"MapViewController"];
+    mapViewController.photosList = photosList;
+    [self.navigationController pushViewController:mapViewController animated:YES];
+}
+
 #pragma mark - Private Methods
 
 - (void)awakeFromBackgorund
@@ -92,10 +101,23 @@
     if (photosList == nil) {
         photosList = [[NSMutableArray alloc] init];
     }
+    
     [photosList insertObject:photoObj atIndex:0];
     
     if (UIApplication.sharedApplication.applicationState == UIApplicationStateActive)
         [self.tableView reloadData];
+}
+
+- (void)addUserLocation:(CLLocation *)userLocation
+{
+    if (photosList == nil) {
+        photosList = [[NSMutableArray alloc] init];
+    }
+    
+    ARWPhoto *tmp = [[ARWPhoto alloc] init];
+    tmp.photoLocation = userLocation;
+    
+    [photosList insertObject:tmp atIndex:0];
 }
 
 #pragma mark - Table view data source
@@ -133,8 +155,8 @@
         [cell.activityIndicator stopAnimating];
         [cell.activityIndicator setHidden:YES];
         cell.picImageView = nil;
+        cell.locationInformationLabel.text = [NSString stringWithFormat:@"lat:%.4f lon:%.4f", photoObj.photoLocation.coordinate.latitude, photoObj.photoLocation.coordinate.longitude];
     }
-    cell.locationInformationLabel.text = [NSString stringWithFormat:@"lat:%.4f lon:%.4f", photoObj.photoLocation.coordinate.latitude, photoObj.photoLocation.coordinate.longitude];
     return cell;
 }
 
