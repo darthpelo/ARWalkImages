@@ -9,7 +9,9 @@
 #import "ARWMapViewController.h"
 #import "ARWPhoto.h"
 
-@interface ARWMapViewController ()
+@interface ARWMapViewController () {
+    CLLocationCoordinate2D _userPosition;
+}
 
 @end
 
@@ -28,13 +30,17 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    for (int i = 0; i < self.photosList.count; i++) {
+    for (int i = 0; i < self.userPositionsList.count; i++) {
         // Add another annotation to the map.
-        ARWPhoto *photo = [self.photosList objectAtIndex:i];
+        ARWPhoto *photo = [self.userPositionsList objectAtIndex:i];
         MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
         annotation.coordinate = photo.photoLocation.coordinate;
         [self.mapView addAnnotation:annotation];
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
     [self setUpMap];
 }
 
@@ -46,8 +52,8 @@
 
 - (void)setUpMap
 {
-    MKMapPoint annotationPoint = MKMapPointForCoordinate(self.mapView.userLocation.coordinate);
-    MKMapRect zoomRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 1.0, 1.0);
+    MKMapPoint annotationPoint = MKMapPointForCoordinate(_userPosition);
+    MKMapRect zoomRect = MKMapRectMake(annotationPoint.x, annotationPoint.y, 2.0, 2.0);
     for (id <MKAnnotation> annotation in self.mapView.annotations)
     {
         MKMapPoint annotationPoint = MKMapPointForCoordinate(annotation.coordinate);
@@ -55,6 +61,11 @@
         zoomRect = MKMapRectUnion(zoomRect, pointRect);
     }
     [self.mapView setVisibleMapRect:zoomRect animated:YES];
+}
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    _userPosition = userLocation.coordinate;
 }
 
 @end

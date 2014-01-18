@@ -14,7 +14,7 @@
 
 @interface ARWViewController () {
     NSMutableArray *photosList;
-    
+    NSMutableArray *positionsLinst;
     BOOL updating;
 }
 
@@ -68,7 +68,7 @@
 {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ARWMapViewController *mapViewController = [storyboard instantiateViewControllerWithIdentifier:@"MapViewController"];
-    mapViewController.photosList = photosList;
+    mapViewController.userPositionsList = positionsLinst;
     [self.navigationController pushViewController:mapViewController animated:YES];
 }
 
@@ -101,23 +101,26 @@
     if (photosList == nil) {
         photosList = [[NSMutableArray alloc] init];
     }
+    if (positionsLinst == nil) {
+        positionsLinst = [[NSMutableArray alloc] init];
+    }
     
     [photosList insertObject:photoObj atIndex:0];
-    
+    [positionsLinst insertObject:photoObj atIndex:0];
     if (UIApplication.sharedApplication.applicationState == UIApplicationStateActive)
         [self.tableView reloadData];
 }
 
 - (void)addUserLocation:(CLLocation *)userLocation
 {
-    if (photosList == nil) {
-        photosList = [[NSMutableArray alloc] init];
+    if (positionsLinst == nil) {
+        positionsLinst = [[NSMutableArray alloc] init];
     }
     
     ARWPhoto *tmp = [[ARWPhoto alloc] init];
     tmp.photoLocation = userLocation;
-    
-    [photosList insertObject:tmp atIndex:0];
+    tmp.photo = nil;
+    [positionsLinst insertObject:tmp atIndex:0];
 }
 
 #pragma mark - Table view data source
@@ -151,12 +154,12 @@
         [cell.activityIndicator stopAnimating];
         [cell.activityIndicator setHidden:YES];
         cell.picImageView.image = photoObj.photo;
-    } else {
+    } /*else {
         [cell.activityIndicator stopAnimating];
         [cell.activityIndicator setHidden:YES];
         cell.picImageView = nil;
         cell.locationInformationLabel.text = [NSString stringWithFormat:@"lat:%.4f lon:%.4f", photoObj.photoLocation.coordinate.latitude, photoObj.photoLocation.coordinate.longitude];
-    }
+    }*/
     return cell;
 }
 

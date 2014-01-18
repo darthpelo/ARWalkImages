@@ -60,7 +60,7 @@
 - (NSDictionary *)calculateBoundingCoordinates:(CLLocationCoordinate2D)coordinate
 {
     double earthRadius = 6371; // earth radius in km
-    double radius = 1; // square bounding box that is a given distance (e.g. 50km) away from the coordinate
+    double radius = 0.5; // square bounding box that is a given distance (e.g. 50km) away from the coordinate. radius unit is km
     
     double x1 = coordinate.longitude - radiandsToDegrees(radius/earthRadius/cos(degreesToRadians(coordinate.latitude)));
     

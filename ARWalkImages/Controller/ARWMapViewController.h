@@ -12,6 +12,6 @@
 @interface ARWMapViewController : UIViewController <MKMapViewDelegate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
-@property (strong, nonatomic) NSArray *photosList;
+@property (strong, nonatomic) NSArray *userPositionsList;
 
 @end
