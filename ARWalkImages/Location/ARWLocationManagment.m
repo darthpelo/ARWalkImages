@@ -10,6 +10,7 @@
 
 #import "ARWLocationManagment.h"
 #import "ARWConnectionManagment.h"
+#import <MapKit/MapKit.h>
 
 #define degreesToRadians(x) (M_PI * x / 180.0)
 #define radiandsToDegrees(x) (x * 180.0 / M_PI)
@@ -70,8 +71,8 @@
     
     double y2 = coordinate.latitude - radiandsToDegrees(radius/earthRadius);
     
-    CLLocation *boundLocationMax = [[CLLocation alloc] initWithLatitude:y1 longitude:x1];
-    CLLocation *boundLocationMin = [[CLLocation alloc] initWithLatitude:y2 longitude:x2];
+    CLLocation *boundLocationMin = [[CLLocation alloc] initWithLatitude:y1 longitude:x1];
+    CLLocation *boundLocationMax = [[CLLocation alloc] initWithLatitude:y2 longitude:x2];
     
     return @{
              @"min": boundLocationMin,
@@ -85,8 +86,7 @@
            fromLocation:(CLLocation *)oldLocation
 {
     if (oldLocation.coordinate.longitude != 0.0f && oldLocation.coordinate.latitude != 0.0f) {
-        NSDictionary *bound = [self calculateBoundingCoordinates:newLocation.coordinate];
-        [[ARWConnectionManagment sharedManager] getPhotoForLocation:((CLLocation *)bound[@"max"]).coordinate minCoordinate:((CLLocation *)bound[@"min"]).coordinate success:^(UIImage *image) {
+        [[ARWConnectionManagment sharedManager] getPhotoForLocation:newLocation.coordinate minCoordinate:oldLocation.coordinate success:^(UIImage *image) {
             ARWPhoto *newPhoto = [[ARWPhoto alloc] init];
             newPhoto.photo = image;
             newPhoto.photoLocation = newLocation;

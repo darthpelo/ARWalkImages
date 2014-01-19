@@ -25,8 +25,8 @@
 - (void)getPhotoForLocation:(CLLocationCoordinate2D)maxCoordinate minCoordinate:(CLLocationCoordinate2D)minCoordinate success:(void(^)(UIImage *image))success failure:(void(^)())failure
 {
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-    //www.panoramio.com/map/get_panoramas.php?order=popularity&set=full&from=80&to=100&minx=-7.47&miny=42.29&maxx=-7.42&maxy=42.32&size=medium
-    NSString *urlStr = [NSString stringWithFormat:@"http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=full&from=0&to=2&minx=%f&miny=%f&maxx=%f&maxy=%f&size=medium", minCoordinate.longitude, minCoordinate.latitude, maxCoordinate.longitude, maxCoordinate.latitude];
+    // http://www.panoramio.com/map/get_panoramas.php?order=popularity&set=full&from=0&to=2&minx=%f&miny=%f&maxx=%f&maxy=%f&size=medium
+    NSString *urlStr = [NSString stringWithFormat:@"http://www.panoramio.com/map/get_panoramas.php?set=public&from=0&to=2&minx=%f&miny=%f&maxx=%f&maxy=%f&size=medium", minCoordinate.longitude, minCoordinate.latitude, maxCoordinate.longitude, maxCoordinate.latitude];
     
     [manager GET:urlStr parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 #ifdef DEBUG
